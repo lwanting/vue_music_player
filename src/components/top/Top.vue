@@ -1,0 +1,134 @@
+<template>
+  <div class="header">
+    <div class="left">
+      <!-- 首页，放缩按钮 -->
+      <div class="button">
+        <span class="left-button"></span>
+        <span class="middle-button"></span>
+        <span class="right-button"></span>
+      </div>
+      <!-- 前进后退键 -->
+      <div class="history">
+        <span class="back"></span>
+        <span class="go"></span>
+      </div>
+    </div>
+    <div class="right">
+      <!-- 搜索框 -->
+      <el-input size="small" placeholder="搜索" v-model="input">
+        <i slot="prefix" class="el-input__icon el-icon-search"></i>
+      </el-input>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      input: ''
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  background-color: #c62f2f;
+
+  .left {
+    position: relative;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    margin-left: 5px;
+
+    .button {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      left: 0;
+      width: 70px;
+      height: 30px;
+      margin-top: 10px;
+
+      span[class$='button'] {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 16px;
+        cursor: pointer;
+        &:hover::before {
+          font-family: 'iconfont' !important;
+          font-size: 12px;
+          color: #383737;
+          opacity: 1;
+        }
+      }
+      .left-button {
+        background-color: #dd6d60;
+        &::before {
+          content: '\e605';
+          opacity: 0;
+        }
+      }
+      .middle-button {
+        background-color: #dcc060;
+        &::before {
+          content: '\e621';
+          opacity: 0;
+        }
+      }
+      .right-button {
+        background-color: #84bb58;
+        &::before {
+          content: '\e776';
+          opacity: 0;
+        }
+      }
+    }
+    .history {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: absolute;
+      left: 120px;
+      width: 80px;
+      height: 100%;
+
+      span {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(0, 0, 0, .2);
+        }
+      }
+      .back::after {
+        content: '\e602';
+        font-family: 'iconfont' !important;
+        font-size: 16px;
+        color: rgb(250, 250, 250, .8);
+      }
+      .go::after {
+        content: '\e600';
+        font-family: 'iconfont' !important;
+        font-size: 16px;
+        color: rgb(250, 250, 250, .8);
+      }
+    }
+  }
+  .right {
+    margin-right: 100px;
+  }
+}
+</style>

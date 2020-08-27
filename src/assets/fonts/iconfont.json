@@ -1,0 +1,79 @@
+{
+  "id": "2027605",
+  "name": "music-player",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "929688",
+      "name": "play",
+      "font_class": "-play",
+      "unicode": "e7c3",
+      "unicode_decimal": 59331
+    },
+    {
+      "icon_id": "1400515",
+      "name": "mv",
+      "font_class": "-mv",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "2412369",
+      "name": "网易云音乐",
+      "font_class": "-find-music",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "8686541",
+      "name": "方向-左",
+      "font_class": "-left-arrow",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "9415975",
+      "name": "方向",
+      "font_class": "-right-arrow",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9592230",
+      "name": "icon-music",
+      "font_class": "-new-music",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "11959524",
+      "name": "缩小",
+      "font_class": "-mini",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "13706577",
+      "name": "GoogleMaterial ic queue music 48px",
+      "font_class": "-playlist",
+      "unicode": "ec14",
+      "unicode_decimal": 60436
+    },
+    {
+      "icon_id": "14065884",
+      "name": "home",
+      "font_class": "-home",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "15424918",
+      "name": "缩放",
+      "font_class": "-fullscreen",
+      "unicode": "e776",
+      "unicode_decimal": 59254
+    }
+  ]
+}

@@ -1,11 +1,17 @@
 <template>
-  <div>
+  <div id="app">
+    <Index/>
   </div>
 </template>
 
 <script>
-export default {
+import Index from './components/index/Index'
 
+export default {
+  name: 'app',
+  components: {
+    Index
+  }
 }
 </script>
 
