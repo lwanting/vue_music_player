@@ -31,10 +31,10 @@
       <div class="main">
         <router-view></router-view>
       </div>
-      <!-- 底部播放模块 -->
-      <div class="bottom">
-        <audio :src="musicUrl" controls autoplay></audio>
-      </div>
+    </div>
+    <!-- 底部播放模块 -->
+    <div class="bottom">
+      <audio :src="musicUrl" controls autoplay></audio>
     </div>
   </div>
 </template>
@@ -83,16 +83,19 @@ export default {
     }
     .main {
       flex: 1;
+      margin-bottom: 60px;
       overflow-y: scroll;
     }
-    .bottom {
-      position: fixed;
-      left: 0;
-      bottom: 0;
+  }
+  .bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f1f3f4;
+    audio {
       width: 100%;
-      audio {
-        width: 100%;
-      }
     }
   }
 }

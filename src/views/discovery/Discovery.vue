@@ -288,7 +288,7 @@ export default {
   .mvs {
     .list {
       display: flex;
-      margin-bottom: 100px;
+      margin-bottom: 30px;
       .item {
         width: 25%;
         margin: 10px;
