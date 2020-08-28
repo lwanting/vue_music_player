@@ -34,9 +34,9 @@
           <div class="order-box">
             <span class="order">{{ index+1 &lt; 10 ? '0'+(index+1) : index+1 }}</span>
           </div>
-          <div class="poster">
+          <div class="poster" @click="playMusic(item.id)">
             <img :src="item.picUrl" alt />
-            <div class="play-box" @click="playMusic(item.id)">
+            <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>
           </div>
@@ -139,7 +139,7 @@ export default {
 
 <style lang="scss" scoped>
 .discovery {
-  padding: 30px 120px 0 120px;
+  margin: 30px 120px 0 120px;
   .title {
     font-size: 20px;
     font-weight: 400;

@@ -12,6 +12,15 @@ import './assets/fonts/iconfont.css'
 
 Vue.config.productionTip = false
 
+// 全局过滤器
+Vue.filter('formatCount', count => {
+  if (count / 10000 > 10) {
+    return parseInt(count / 10000) + '万'
+  } else {
+    return count
+  }
+})
+
 new Vue({
   router,
   store,

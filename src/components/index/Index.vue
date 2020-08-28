@@ -8,20 +8,21 @@
     <div class="body">
       <!-- 侧边导航栏 -->
       <div class="nav">
-        <el-menu default-active="1" class="el-menu-vertical" active-text-color="#dd6d60">
-          <el-menu-item index="1">
+        <el-menu default-active="/" class="el-menu-vertical" active-text-color="#dd6d60"
+        router>
+          <el-menu-item index="/">
             <i class="iconfont icon-find-music"></i>
             <span slot="title">发现音乐</span>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="/playlists">
             <i class="iconfont icon-playlist"></i>
             <span slot="title">推荐歌单</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="/songs">
             <i class="iconfont icon-new-music"></i>
             <span slot="title">最新音乐</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="/mvs">
             <i class="iconfont icon-mv"></i>
             <span slot="title">最新MV</span>
           </el-menu-item>
@@ -96,6 +97,7 @@ export default {
     background-color: #f1f3f4;
     audio {
       width: 100%;
+      outline: none;
     }
   }
 }
