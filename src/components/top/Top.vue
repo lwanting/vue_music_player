@@ -9,8 +9,8 @@
       </div>
       <!-- 前进后退键 -->
       <div class="history">
-        <span class="back"></span>
-        <span class="go"></span>
+        <span class="back" @click="$router.go(-1)"></span>
+        <span class="go" @click="$router.go(1)"></span>
       </div>
     </div>
     <div class="right">

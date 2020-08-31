@@ -8,7 +8,7 @@
     <div class="body">
       <!-- 侧边导航栏 -->
       <div class="nav">
-        <el-menu default-active="/" class="el-menu-vertical" active-text-color="#dd6d60"
+        <el-menu :default-active="$route.path" class="el-menu-vertical" active-text-color="#dd6d60"
         router>
           <el-menu-item index="/">
             <i class="iconfont icon-find-music"></i>

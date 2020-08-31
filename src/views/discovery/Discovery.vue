@@ -12,7 +12,7 @@
     <div class="recommend">
       <h3 class="title">推荐歌单</h3>
       <div class="list">
-        <div class="item" v-for="(item, index) in commend" :key="index">
+        <div class="item" v-for="(item, index) in commend" :key="index" @click="toPlaylist(item.id)">
           <div class="poster">
             <div class="detail-box">
               <span class="detail">{{item.copywriter}}</span>
@@ -132,6 +132,10 @@ export default {
     async playMusic(id) {
       const { data: res } = await getMusicUrl(id)
       this.$parent.musicUrl = res.data[0].url
+    },
+    // 跳转到歌单详情页面
+    toPlaylist(id) {
+      this.$router.push(`/playlist?id=${id}`)
     }
   }
 }

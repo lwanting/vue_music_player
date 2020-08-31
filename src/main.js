@@ -13,6 +13,7 @@ import './assets/fonts/iconfont.css'
 Vue.config.productionTip = false
 
 // 全局过滤器
+// 处理歌单播放量
 Vue.filter('formatCount', count => {
   if (count / 10000 > 10) {
     return parseInt(count / 10000) + '万'
@@ -20,6 +21,7 @@ Vue.filter('formatCount', count => {
     return count
   }
 })
+// 处理歌单创建时间
 
 new Vue({
   router,

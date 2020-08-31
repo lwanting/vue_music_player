@@ -26,7 +26,7 @@
     </div>
     <!-- 歌单内容区域 -->
     <div class="category-content">
-      <div class="item" v-for="(item, index) in topList" :key="index">
+      <div class="item" v-for="(item, index) in topList" :key="index" @click="toPlaylist(item.id)">
         <div class="poster">
           <div class="detail-box">
             <span class="detail">播放量：{{item.playCount | formatCount}}</span>
@@ -116,18 +116,22 @@ export default {
         cat: this.isActive,
         offset: this.offset
       })
-      console.log(res)
+      // console.log(res)
       this.topList = res.playlists
       this.total = res.total
     },
     // 页面改变, 计算偏移量
     pageChange(page) {
       this.page = page
-      this.offset = (this.page - 1) * 50
+      this.offset = (page - 1) * 50
       // 根据偏移量重新获取歌单
       this.setTopList()
       // 返回顶部
       this.$refs.playlists.scrollIntoView({ behavior: 'smooth' })
+    },
+    // 跳转到歌单详情页面
+    toPlaylist(id) {
+      this.$router.push(`/playlist?id=${id}`)
     }
   }
 }
@@ -273,10 +277,17 @@ export default {
       }
     }
   }
+  // 分页区域
   .pagination {
     display: flex;
     justify-content: center;
     ::v-deep.el-pager li.active {
+      color: #d33a31;
+    }
+    ::v-deep.el-pager li:hover {
+      color: #d33a31;
+    }
+    ::v-deep.el-icon:hover {
       color: #d33a31;
     }
   }
