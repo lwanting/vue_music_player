@@ -9,6 +9,8 @@ import './assets/style/base.scss'
 import './utils/element.js'
 // 导入iconfont
 import './assets/fonts/iconfont.css'
+// 导入moment
+import moment from 'moment'
 
 Vue.config.productionTip = false
 
@@ -21,7 +23,10 @@ Vue.filter('formatCount', count => {
     return count
   }
 })
-// 处理歌单创建时间
+// 处理歌曲时长
+Vue.filter('formatDuration', time => {
+  return moment(time).format('mm:ss')
+})
 
 new Vue({
   router,

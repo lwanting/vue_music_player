@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const Discovery = () => import('../views/discovery/Discovery.vue')
 const Playlists = () => import('../views/playlists/Playlists.vue')
 const Playlist = () => import('../views/playlist-detail/Playlist.vue')
+const Songs = () => import('../views/songs/Songs.vue')
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/playlist',
     component: Playlist
+  },
+  {
+    path: '/songs',
+    component: Songs
   }
 ]
 
