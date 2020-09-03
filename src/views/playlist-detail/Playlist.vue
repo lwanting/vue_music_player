@@ -48,7 +48,7 @@
           <el-table-column prop="al.name" label="专辑" width="300"></el-table-column>
           <!-- 时长 -->
           <el-table-column label="时长">
-            <template v-slot="scope">{{scope.row.dt | duration}}</template>
+            <template v-slot="scope">{{scope.row.dt | formatDuration}}</template>
           </el-table-column>
         </el-table>
       </el-tab-pane>
@@ -66,7 +66,7 @@
                 <span class="content">{{item.content}}</span>
               </div>
               <div class="bottom">
-                <span class="time">{{item.tiem | commentDate}}</span>
+                <span class="time">{{item.tiem | formatCommentDate}}</span>
                 <div class="like">
                   <span class="iconfont icon-like">{{item.likedCount}}</span>
                 </div>
@@ -92,7 +92,7 @@
                 <span class="content">{{item.beReplied[0].content}}</span>
               </div>
               <div class="bottom">
-                <span class="time">{{item.tiem | commentDate}}</span>
+                <span class="time">{{item.tiem | formatCommentDate}}</span>
                 <div class="like">
                   <span class="iconfont icon-like">{{item.likedCount}}</span>
                 </div>

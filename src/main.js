@@ -15,10 +15,10 @@ import moment from 'moment'
 Vue.config.productionTip = false
 
 // 全局过滤器
-// 处理歌单播放量
+// 处理播放量
 Vue.filter('formatCount', count => {
   if (count / 10000 > 10) {
-    return parseInt(count / 10000) + '万'
+    return Math.round(count / 10000) + '万'
   } else {
     return count
   }
@@ -26,6 +26,10 @@ Vue.filter('formatCount', count => {
 // 处理歌曲时长
 Vue.filter('formatDuration', time => {
   return moment(time).format('mm:ss')
+})
+// 处理评论时间
+Vue.filter('formatCommentDate', time => {
+  return moment(time).format('YYYY-MM-DD hh:mm:ss')
 })
 
 new Vue({

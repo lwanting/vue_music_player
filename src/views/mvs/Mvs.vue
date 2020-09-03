@@ -46,7 +46,7 @@
     <div class="mvList">
       <!-- mv列表 -->
       <div class="list">
-        <div class="item" v-for="(item, index) in mvs" :key="index">
+        <div class="item" v-for="(item, index) in mvs" :key="index" @click="toMv(item.id)">
           <div class="cover">
             <img :src="item.cover" alt />
             <div class="play-box">
@@ -54,7 +54,7 @@
             </div>
             <div class="num-box">
               <span class="iconfont icon-play"></span>
-              <span class="num">{{item.playCount}}</span>
+              <span class="num">{{item.playCount | formatCount}}</span>
             </div>
           </div>
           <div class="detail">
@@ -148,6 +148,10 @@ export default {
       this.setMvs()
       // 返回顶部
       this.$refs.tab.scrollIntoView({ behavior: 'smooth' })
+    },
+    // 跳转到Mv详情页面
+    toMv(id) {
+      this.$router.push(`/mv?id=${id}`)
     }
   }
 }
@@ -195,6 +199,7 @@ export default {
       .item {
         width: 25%;
         padding: 10px;
+        cursor: pointer;
         .cover {
           position: relative;
           &:hover .play-box {

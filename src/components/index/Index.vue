@@ -7,7 +7,7 @@
     <!-- 主题区域 -->
     <div class="body">
       <!-- 侧边导航栏 -->
-      <div class="nav">
+      <div class="nav" v-show="$store.state.isMenuShow">
         <el-menu :default-active="$route.path" class="el-menu-vertical" active-text-color="#dd6d60"
         router>
           <el-menu-item index="/">
