@@ -8,8 +8,12 @@
     <div class="body">
       <!-- 侧边导航栏 -->
       <div class="nav" v-show="$store.state.isMenuShow">
-        <el-menu :default-active="$route.path" class="el-menu-vertical" active-text-color="#dd6d60"
-        router>
+        <el-menu
+          :default-active="$route.path"
+          class="el-menu-vertical"
+          active-text-color="#dd6d60"
+          router
+        >
           <el-menu-item index="/">
             <i class="iconfont icon-find-music"></i>
             <span slot="title">发现音乐</span>
@@ -30,7 +34,7 @@
       </div>
       <!-- 内容主体 -->
       <div class="main">
-        <router-view></router-view>
+        <router-view />
       </div>
     </div>
     <!-- 底部播放模块 -->

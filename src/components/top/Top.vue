@@ -3,19 +3,19 @@
     <div class="left">
       <!-- 首页，放缩按钮 -->
       <div class="button">
-        <span class="left-button"></span>
-        <span class="middle-button"></span>
-        <span class="right-button"></span>
+        <span class="left-button" @click="toHome()"></span>
+        <span class="middle-button" @click="exitFullScreen()"></span>
+        <span class="right-button" @click="fullScreen()"></span>
       </div>
       <!-- 前进后退键 -->
       <div class="history">
-        <span class="back" @click="$router.go(-1)"></span>
-        <span class="go" @click="$router.go(1)"></span>
+        <span class="back" @click="back()"></span>
+        <span class="go" @click="forward()"></span>
       </div>
     </div>
     <div class="right">
       <!-- 搜索框 -->
-      <el-input size="small" placeholder="搜索" v-model="input">
+      <el-input size="small" placeholder="搜索" v-model="query" @keyup.enter.native="toSearch()">
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
     </div>
@@ -23,10 +23,39 @@
 </template>
 
 <script>
+import screenfull from 'screenfull'
 export default {
   data() {
     return {
-      input: ''
+      query: ''
+    }
+  },
+  methods: {
+    // 返回首页
+    toHome() {
+      this.$router.push('/')
+    },
+    // 全屏
+    fullScreen() {
+      screenfull.request()
+    },
+    // 退出全屏
+    exitFullScreen() {
+      screenfull.exit()
+    },
+    // 后退
+    back() {
+      this.$router.go(-1)
+    },
+    // 前进
+    forward() {
+      this.$router.go(1)
+    },
+    // 跳转到搜索结果页
+    toSearch() {
+      // 重置搜索type
+      this.$store.commit('saveSearchTab', '1')
+      this.$router.push(`/search?keywords=${this.query}`)
     }
   }
 }

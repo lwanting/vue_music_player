@@ -17,6 +17,7 @@ const Playlist = () => import('../views/playlist-detail/Playlist.vue')
 const Songs = () => import('../views/songs/Songs.vue')
 const Mvs = () => import('../views/mvs/Mvs.vue')
 const Mv = () => import('../views/mv-detail/Mv.vue')
+const Search = () => import('../views/search/Search.vue')
 
 const routes = [
   {
@@ -46,6 +47,10 @@ const routes = [
   {
     path: '/mv',
     component: Mv
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]
 
