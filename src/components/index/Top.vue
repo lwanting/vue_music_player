@@ -14,21 +14,22 @@
       </div>
     </div>
     <div class="right">
-      <!-- 搜索框 -->
-      <el-input size="small" placeholder="搜索" v-model="query" @keyup.enter.native="toSearch()">
-        <i slot="prefix" class="el-input__icon el-icon-search"></i>
-      </el-input>
+      <search-input />
     </div>
   </div>
 </template>
 
 <script>
 import screenfull from 'screenfull'
+import SearchInput from '../search-wrap/SearchInput'
 export default {
   data() {
     return {
-      query: ''
+      // query: ''
     }
+  },
+  components: {
+    SearchInput
   },
   methods: {
     // 返回首页
@@ -50,14 +51,13 @@ export default {
     // 前进
     forward() {
       this.$router.go(1)
-    },
-    // 跳转到搜索结果页
-    toSearch() {
-      // 重置搜索type
-      this.$store.commit('saveSearchTab', '1')
-      this.$router.push(`/search?keywords=${this.query}`)
     }
   }
+  // watch: {
+  //   query() {
+  //     this.$store.commit('saveKeywords', this.query)
+  //   }
+  // }
 }
 </script>
 
@@ -69,7 +69,6 @@ export default {
   width: 100%;
   height: 54px;
   background-color: #c62f2f;
-
   .left {
     position: relative;
     left: 0;
@@ -139,20 +138,20 @@ export default {
         line-height: 30px;
         cursor: pointer;
         &:hover {
-          background-color: rgb(0, 0, 0, .2);
+          background-color: rgb(0, 0, 0, 0.2);
         }
       }
       .back::after {
         content: '\e602';
         font-family: 'iconfont' !important;
         font-size: 16px;
-        color: rgb(250, 250, 250, .8);
+        color: rgb(250, 250, 250, 0.8);
       }
       .go::after {
         content: '\e600';
         font-family: 'iconfont' !important;
         font-size: 16px;
-        color: rgb(250, 250, 250, .8);
+        color: rgb(250, 250, 250, 0.8);
       }
     }
   }

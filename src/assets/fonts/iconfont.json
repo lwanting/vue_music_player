@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5037380",
+      "name": "删除",
+      "font_class": "-delete",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "10995713",
+      "name": "194音量、喇叭、声音",
+      "font_class": "-volume",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
       "icon_id": "12685018",
       "name": "赞",
       "font_class": "-like",

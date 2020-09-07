@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <div class="header" ref="header">
       <span class="keywords">{{keywords}}</span>
-      <span class="result-num">找到{{total}}个结果</span>
+      <span class="result-num">找到{{getTotal}}个结果</span>
     </div>
     <!-- tab栏 -->
     <el-tabs v-model="type">
@@ -82,6 +82,7 @@
         :page-size="pageSize"
         :current-page="page"
         @current-change="pageChange"
+        v-show="getTotal"
       ></el-pagination>
     </div>
   </div>
@@ -116,6 +117,10 @@ export default {
     // console.log('create')
     this.type = this.$store.state.searchType
     this.searchResult()
+  },
+  beforeUpdate () {
+    // 更新前隐藏搜索面板
+    this.$store.commit('setSearchPanelVisible', false)
   },
   methods: {
     // 获取搜索结果
@@ -187,7 +192,14 @@ export default {
     // 获取关键字
     keywords() {
       return this.$route.query.keywords
+    },
+    getTotal() {
+      return this.total === undefined ? 0 : this.total
     }
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.$store.commit('setSearchPanelVisible', false)
+    next()
   },
   // 离开前存储当前tab
   beforeRouteLeave(to, from, next) {

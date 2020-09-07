@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <!-- 点击除搜索面板外，隐藏搜索面板 -->
+  <div class="container" @click="hideSearchPanel()">
     <!-- 头部区域 -->
     <div class="header">
       <top />
@@ -45,15 +46,24 @@
 </template>
 
 <script>
-import Top from '../top/Top'
+import Top from './Top'
 export default {
   data() {
     return {
-      musicUrl: ''
+      // 音乐url
+      musicUrl: '',
+      // 搜索面板显示与隐藏
+      searchPanelVisi: false
     }
   },
   components: {
     Top
+  },
+  methods: {
+    // input失去焦点隐藏搜索面板
+    hideSearchPanel() {
+      this.$store.commit('setSearchPanelVisible', false)
+    }
   }
 }
 </script>
@@ -65,6 +75,8 @@ export default {
   .header {
     position: fixed;
     top: 0;
+    // 搜索面板置顶
+    z-index: 999;
   }
   .body {
     display: flex;

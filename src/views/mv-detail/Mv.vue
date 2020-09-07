@@ -158,7 +158,7 @@ export default {
   },
   created() {
     // 隐藏侧边导航栏
-    this.$store.commit('setMenuShow', false)
+    this.$store.commit('setMenuVisible', false)
     // this.mvData()
     // this.mvUrl()
     // this.mvComment()
