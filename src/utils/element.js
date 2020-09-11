@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Input, Icon, Menu, MenuItem, Carousel, CarouselItem, Pagination, Tabs, TabPane, Table, TableColumn } from 'element-ui'
+import { Button, Input, Icon, Menu, MenuItem, Carousel, CarouselItem, Pagination, Tabs, TabPane, Table, TableColumn, Loading, Popover } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Input)
@@ -13,3 +13,5 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Loading)
+Vue.use(Popover)

@@ -87,13 +87,11 @@ export default {
     hideSearchPanel() {
       this.$store.commit('setSearchPanelVisible', false)
     },
-    setflag() {
-      this.flag = false
-    },
     // 跳转到搜索结果页
     toSearch(keywords) {
       // console.log(this.history)
       if (this.history !== null) {
+        // 避免存储重复的搜索记录
         if (this.history.indexOf(keywords) === -1) {
           this.history.push(keywords)
           localStorage.setItem(

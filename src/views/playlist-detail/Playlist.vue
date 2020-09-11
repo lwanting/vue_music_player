@@ -42,7 +42,7 @@
           <el-table-column prop="name" label="音乐标题" width="350"></el-table-column>
           <!-- 歌手 -->
           <el-table-column label="歌手" width="300">
-            <template v-slot="scope">{{getName(scope.row.ar)}}</template>
+            <template v-slot="scope">{{scope.row.ar | formatSinger}}</template>
           </el-table-column>
           <!-- 专辑 -->
           <el-table-column prop="al.name" label="专辑" width="300"></el-table-column>
@@ -117,8 +117,10 @@
 
 <script>
 import { getPlaylistDetail, getPlaylistComment } from '../../api/playlist'
+import { getMusicInfo } from '../../api/music'
 import moment from 'moment'
-import { getMusicUrl } from '../../api/discovery'
+import { mapMutations, mapActions } from '../../store/helper/music'
+// import { getMusicUrl } from '../../api/discovery'
 export default {
   data() {
     return {
@@ -140,7 +142,8 @@ export default {
         // 歌单标签
         tags: [],
         // 歌单介绍
-        description: ''
+        description: '',
+        trackIds: []
       },
       // tab栏
       activeTab: 'list',
@@ -166,14 +169,17 @@ export default {
     // 获取歌单详情数据
     async playlistDetail() {
       const { data: res } = await getPlaylistDetail(this.id)
-      this.playlist = JSON.parse(JSON.stringify(res.playlist))
+      this.playlist = res.playlist
       this.songList = res.playlist.tracks
-      // console.log(this.songList)
+      this.playMusicSongs()
+      // console.log(this.playlist)
     },
-    getName(arr) {
-      const name = []
-      arr.forEach(item => name.push(item.name))
-      return name.join('/')
+    // 根据trackIds获取歌单全部歌曲
+    async playMusicSongs() {
+      // console.log(this.playlist.trackIds)
+      const ids = this.playlist.trackIds.map(song => song.id).join(',')
+      const { data: res } = await getMusicInfo(ids)
+      this.songList = res.songs
     },
     // 获取歌单评论
     async playlistComment() {
@@ -200,18 +206,42 @@ export default {
       // 返回顶部
       this.$refs.playlist.scrollIntoView({ behavior: 'smooth' })
     },
-    // 根据id获取歌曲url并传递给播放组件
+    // 根据id获取歌曲信息,设置播放列表
     async playMusic(id) {
-      const { data: res } = await getMusicUrl(id)
-      this.$parent.musicUrl = res.data[0].url
-    }
+      this.currnetMusicInfo(id)
+      this.setPlaylist(this.standarizeSongs)
+    },
+    ...mapMutations(['setPlaylist']),
+    ...mapActions(['currnetMusicInfo'])
   },
   computed: {
+    // 获取id
     id() {
       return this.$route.query.id
     },
+    // 获取标签
     tag() {
       return this.playlist.tags.join('/')
+    },
+    // 处理歌曲数据(标准化)
+    standarizeSongs() {
+      const songs = this.songList.map(song => {
+        const {
+          id,
+          name,
+          ar,
+          dt,
+          mv
+        } = song
+        return {
+          id,
+          name,
+          artists: ar,
+          duration: dt,
+          mvid: mv
+        }
+      })
+      return songs
     }
   },
   filters: {

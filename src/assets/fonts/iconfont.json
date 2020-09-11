@@ -6,18 +6,102 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7736101",
+      "name": "github",
+      "font_class": "-github",
+      "unicode": "e8ef",
+      "unicode_decimal": 59631
+    },
+    {
+      "icon_id": "9114391",
+      "name": "42音量",
+      "font_class": "-volume",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "9114392",
+      "name": "43静音",
+      "font_class": "-mute",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "15311734",
+      "name": "暂停",
+      "font_class": "-pause-button",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "650809",
+      "name": "用户",
+      "font_class": "-user",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "705706",
+      "name": "播放",
+      "font_class": "-play-button",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "1207794",
+      "name": "保存顺序",
+      "font_class": "-order-play",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "2154283",
+      "name": "单曲循环_32",
+      "font_class": "-loop-play",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "5330418",
+      "name": "随机",
+      "font_class": "-random-play",
+      "unicode": "e788",
+      "unicode_decimal": 59272
+    },
+    {
+      "icon_id": "6536053",
+      "name": "文件-播放列表",
+      "font_class": "-song-list",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "7417086",
+      "name": "上一首",
+      "font_class": "-previous-song",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "7417092",
+      "name": "下一首",
+      "font_class": "-next-song",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "11855589",
+      "name": "展开",
+      "font_class": "-zoom",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "5037380",
       "name": "删除",
       "font_class": "-delete",
       "unicode": "e626",
       "unicode_decimal": 58918
-    },
-    {
-      "icon_id": "10995713",
-      "name": "194音量、喇叭、声音",
-      "font_class": "-volume",
-      "unicode": "e606",
-      "unicode_decimal": 58886
     },
     {
       "icon_id": "12685018",

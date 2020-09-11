@@ -36,34 +36,41 @@
       <!-- 内容主体 -->
       <div class="main">
         <router-view />
+        <playing-list />
       </div>
     </div>
     <!-- 底部播放模块 -->
     <div class="bottom">
-      <audio :src="musicUrl" controls autoplay></audio>
+      <mini-player />
     </div>
   </div>
 </template>
 
 <script>
 import Top from './Top'
+import MiniPlayer from '../player/MiniPlayer'
+import PlayingList from '../player/PlayingList'
+import { mapState, mapMutations } from '../../store/helper/music'
 export default {
   data() {
     return {
-      // 音乐url
-      musicUrl: '',
       // 搜索面板显示与隐藏
-      searchPanelVisi: false
+      searchPanelVisi: false,
+      ...mapState(['isPlayingListShow'])
     }
   },
   components: {
-    Top
+    Top,
+    MiniPlayer,
+    PlayingList
   },
   methods: {
     // input失去焦点隐藏搜索面板
     hideSearchPanel() {
       this.$store.commit('setSearchPanelVisible', false)
-    }
+      this.setPlayingListVisible(false)
+    },
+    ...mapMutations(['setPlayingListVisible'])
   }
 }
 </script>
@@ -109,12 +116,8 @@ export default {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    background-color: #f1f3f4;
-    audio {
-      width: 100%;
-      outline: none;
-    }
+    height: 64px;
+    background-color: #fff;
   }
 }
 </style>

@@ -12,7 +12,12 @@
     <div class="recommend">
       <h3 class="title">推荐歌单</h3>
       <div class="list">
-        <div class="item" v-for="(item, index) in commend" :key="index" @click="toPlaylist(item.id)">
+        <div
+          class="item"
+          v-for="(item, index) in commend"
+          :key="index"
+          @click="toPlaylist(item.id)"
+        >
           <div class="poster">
             <div class="detail-box">
               <span class="detail">{{item.copywriter}}</span>
@@ -42,9 +47,7 @@
           </div>
           <div class="detail">
             <p class="song-name">{{item.name}}</p>
-            <p
-              class="singer"
-            >{{ item.song.album.artists.length &gt; 1 ? singer(item.song.album.artists) : item.song.album.artists[0].name}}</p>
+            <p class="singer">{{item.song.album.artists | formatSinger}}</p>
           </div>
         </div>
       </div>
@@ -56,7 +59,7 @@
         <div class="item" v-for="(item, index) in mvs" :key="index">
           <div class="cover">
             <img :src="item.picUrl" alt />
-            <div class="play-box">
+            <div class="play-box" @click="toMv(item.id)">
               <span class="iconfont icon-play"></span>
             </div>
             <div class="num-box">
@@ -75,7 +78,13 @@
 </template>
 
 <script>
-import { getBanners, getCommend, getNewSongs, getMvs, getMusicUrl } from '../../api/discovery'
+import {
+  getBanners,
+  getCommend,
+  getNewSongs,
+  getMvs
+} from '../../api/discovery'
+import { mapActions, mapMutations } from '../../store/helper/music'
 export default {
   data() {
     return {
@@ -117,25 +126,48 @@ export default {
       this.songs = res.result
       // console.log(this.songs)
     },
-    // 一首歌对应多个歌手
-    singer(artists) {
-      const arr = artists.map(item => item.name)
-      return arr.join('/')
-    },
     // 获取推荐MV
     async setMvs() {
       const { data: res } = await getMvs()
       this.mvs = res.result
       // console.log(res)
     },
-    // 根据id获取歌曲url并传递给播放组件
-    async playMusic(id) {
-      const { data: res } = await getMusicUrl(id)
-      this.$parent.musicUrl = res.data[0].url
+    // 根据id获取歌曲信息,设置播放列表
+    playMusic(id) {
+      this.currnetMusicInfo(id)
+      this.setPlaylist(this.standarizeSongs)
     },
     // 跳转到歌单详情页面
     toPlaylist(id) {
       this.$router.push(`/playlist?id=${id}`)
+    },
+    // 跳转到mv详情页面
+    toMv(id) {
+      this.$router.push(`/mv?id=${id}`)
+    },
+    ...mapActions(['currnetMusicInfo']),
+    ...mapMutations(['setPlaylist'])
+  },
+  computed: {
+    // 处理歌曲数据(标准化)
+    standarizeSongs() {
+      const songs = this.songs.map(song => {
+        const {
+          id,
+          name,
+          picUrl,
+          song: { artists, duration, mvid }
+        } = song
+        return {
+          id,
+          name,
+          picUrl,
+          artists,
+          duration,
+          mvid
+        }
+      })
+      return songs
     }
   }
 }
@@ -317,6 +349,7 @@ export default {
             opacity: 0;
             transform: translate(-50%, -50%);
             transition: all 0.5s;
+            cursor: pointer;
             .icon-play {
               color: #d33a31;
               font-size: 25px;

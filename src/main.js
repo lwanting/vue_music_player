@@ -31,6 +31,11 @@ Vue.filter('formatDuration', time => {
 Vue.filter('formatCommentDate', time => {
   return moment(time).format('YYYY-MM-DD hh:mm:ss')
 })
+// 处理一首歌多名歌手
+Vue.filter('formatSinger', artists => {
+  const arr = artists.map(item => item.name)
+  return arr.join('/')
+})
 
 new Vue({
   router,

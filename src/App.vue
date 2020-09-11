@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Index/>
+    <Index />
   </div>
 </template>
 
@@ -16,5 +16,4 @@ export default {
 </script>
 
 <style>
-
 </style>

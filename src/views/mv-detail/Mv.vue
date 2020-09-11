@@ -223,7 +223,7 @@ export default {
   },
   beforeDestroy() {
     // 显示侧边导航栏
-    this.$store.commit('setMenuShow', true)
+    this.$store.commit('setMenuVisible', true)
   }
 }
 </script>
