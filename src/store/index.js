@@ -8,12 +8,12 @@ export default new Vuex.Store({
   state: {
     // 默认显示侧边导航栏
     isMenuShow: true,
-    // 搜索tab栏
+    // 搜索页tab栏
     searchType: '1',
     // 默认不显示搜索面板
-    isSearchPanelShow: false
-    // 搜索关键字
-    // keywords: ''
+    isSearchPanelShow: false,
+    // 歌单页tab栏
+    playlistTab: '全部'
   },
   mutations: {
     // 设置侧边导航栏是否显示
@@ -28,11 +28,11 @@ export default new Vuex.Store({
     setSearchPanelVisible(state, show) {
       // console.log(show)
       state.isSearchPanelShow = show
+    },
+    // 保存歌单页当前tab栏
+    savePlaylistTab(state, tab) {
+      state.playlistTab = tab
     }
-    // 存储搜索关键字
-    // saveKeywords(state, key) {
-    //   state.keywords = key
-    // }
   },
   actions: {
   },

@@ -65,6 +65,11 @@
                 <span class="name">{{item.user.nickname}}：</span>
                 <span class="content">{{item.content}}</span>
               </div>
+              <!-- 回复 -->
+              <div class="replied" v-if="item.beReplied.length">
+                <span class="name">{{item.beReplied[0].user.nickname}}：</span>
+                <span class="content">{{item.beReplied[0].content}}</span>
+              </div>
               <div class="bottom">
                 <span class="time">{{item.tiem | formatCommentDate}}</span>
                 <div class="like">
@@ -226,13 +231,7 @@ export default {
     // 处理歌曲数据(标准化)
     standarizeSongs() {
       const songs = this.songList.map(song => {
-        const {
-          id,
-          name,
-          ar,
-          dt,
-          mv
-        } = song
+        const { id, name, ar, dt, mv } = song
         return {
           id,
           name,
@@ -386,7 +385,7 @@ export default {
     // 评论
     .hotComments,
     .comments {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       .comment {
         display: flex;
         margin-top: 20px;
@@ -435,6 +434,7 @@ export default {
     .pagination {
       display: flex;
       justify-content: center;
+      margin-bottom: 30px;
       ::v-deep.el-pager li.active {
         color: #d33a31;
       }

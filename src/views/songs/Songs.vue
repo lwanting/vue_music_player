@@ -47,7 +47,7 @@
 
 <script>
 import { getTopSong } from '../../api/songs'
-import { getMusicUrl } from '../../api/discovery'
+import { mapActions, mapMutations } from '../../store/helper/music'
 export default {
   data() {
     return {
@@ -88,7 +88,7 @@ export default {
     async topSong() {
       const { data: res } = await getTopSong(this.isActive)
       this.songList = res.data
-      // console.log(res)
+      // console.log(this.songList)
     },
     getName(arr) {
       const name = []
@@ -101,11 +101,13 @@ export default {
       // 重新获取音乐
       this.topSong()
     },
-    // 根据id获取歌曲url并传递给播放组件
+    // 根据id获取歌曲url
     async playMusic(id) {
-      const { data: res } = await getMusicUrl(id)
-      this.$parent.musicUrl = res.data[0].url
-    }
+      this.currnetMusicInfo(id)
+      this.setPlaylist(this.songList)
+    },
+    ...mapActions(['currnetMusicInfo']),
+    ...mapMutations(['setPlaylist'])
   }
 }
 </script>

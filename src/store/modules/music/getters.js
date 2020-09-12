@@ -32,7 +32,7 @@ export default {
     } else {
       index = getters.loopAndRandom
     }
-    return state.playlist[index]
+    return state.playlist[index].id
   },
   // 获取下一首歌曲
   nextMusic(state, getters) {
@@ -42,6 +42,6 @@ export default {
     } else {
       index = getters.loopAndRandom
     }
-    return state.playlist[index]
+    return state.playlist[index].id
   }
 }

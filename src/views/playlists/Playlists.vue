@@ -60,6 +60,7 @@ export default {
     this.setHighQuality()
     // 精选歌单
     this.setTopList()
+    this.isActive = this.$store.state.playlistTab
   },
   data() {
     return {
@@ -133,6 +134,10 @@ export default {
     toPlaylist(id) {
       this.$router.push(`/playlist?id=${id}`)
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit('savePlaylistTab', this.isActive)
+    next()
   }
 }
 </script>
@@ -281,6 +286,7 @@ export default {
   .pagination {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
     ::v-deep.el-pager li.active {
       color: #d33a31;
     }

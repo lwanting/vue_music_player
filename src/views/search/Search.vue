@@ -9,15 +9,29 @@
     <el-tabs v-model="type">
       <el-tab-pane label="歌曲" name="1">
         <!-- 歌曲列表表格 -->
-        <el-table :data="songList" style="width: 100%" class="songTable" @row-dblclick="playMusic">
+        <el-table
+          :data="songList"
+          style="width: 100%"
+          class="songTable"
+          @row-dblclick="playMusic"
+          stripe
+        >
           <!-- 序号 -->
           <el-table-column type="index" width="60">
-            <template
-              v-slot="scope"
-            >{{scope.$index+1 &lt; 10 ? '0'+(scope.$index+1) : scope.$index+1}}</template>
+            <template v-slot="scope">
+              <span v-if="scope.row.id === currentMusic.id" class="iconfont icon-volume"></span>
+              <span v-else class="index">{{scope.$index+1 &lt; 10 ? '0'+(scope.$index+1) : scope.$index+1}}</span>
+            </template>
           </el-table-column>
           <!-- 标题 -->
-          <el-table-column prop="name" label="音乐标题" width="350"></el-table-column>
+          <el-table-column prop="name" label="音乐标题" width="350">
+            <template v-slot="scope">
+              <div class="table-name-cell">
+                <span class="name">{{scope.row.name}}</span>
+              </div>
+              <span class="description">{{scope.row.alias[0]}}</span>
+            </template>
+          </el-table-column>
           <!-- 歌手 -->
           <el-table-column label="歌手" width="300">
             <template v-slot="scope">{{getName(scope.row.artists)}}</template>
@@ -90,7 +104,7 @@
 
 <script>
 import { getSearch } from '../../api/search'
-import { getMusicUrl } from '../../api/discovery'
+import { mapState, mapActions, mapMutations } from '../../store/helper/music'
 export default {
   name: 'Search',
   data() {
@@ -106,7 +120,7 @@ export default {
       // 总数
       total: 0,
       // 每页显示数量
-      pageSize: 30,
+      pageSize: 40,
       // 当前页码
       page: 1,
       // 偏移量
@@ -118,7 +132,7 @@ export default {
     this.type = this.$store.state.searchType
     this.searchResult()
   },
-  beforeUpdate () {
+  beforeUpdate() {
     // 更新前隐藏搜索面板
     this.$store.commit('setSearchPanelVisible', false)
   },
@@ -145,7 +159,7 @@ export default {
           this.total = res.result.mvCount
           break
       }
-      // console.log(res)
+      // console.log(res.result.songs)
     },
     getName(arr) {
       const name = []
@@ -171,9 +185,11 @@ export default {
     },
     // 根据id获取歌曲url并传递给播放组件
     async playMusic(row) {
-      const { data: res } = await getMusicUrl(row.id)
-      this.$parent.musicUrl = res.data[0].url
-    }
+      this.currnetMusicInfo(row.id)
+      this.setPlaylist(this.songList)
+    },
+    ...mapActions(['currnetMusicInfo']),
+    ...mapMutations(['setPlaylist'])
   },
   watch: {
     // 监听tab切换
@@ -195,13 +211,14 @@ export default {
     },
     getTotal() {
       return this.total === undefined ? 0 : this.total
-    }
+    },
+    ...mapState(['currentMusic'])
   },
   beforeRouteUpdate(to, from, next) {
     this.$store.commit('setSearchPanelVisible', false)
     next()
   },
-  // 离开前存储当前tab
+  // 离开前存储当前tab和page
   beforeRouteLeave(to, from, next) {
     // console.log(this.type)
     this.$store.commit('saveSearchTab', this.type)
@@ -231,7 +248,7 @@ export default {
   .el-tabs {
     ::v-deep.el-tabs__item {
       font-size: 16px;
-      color: #6d6c6c;
+      color: #242323;
     }
     ::v-deep.el-tabs__item:hover {
       color: #d33a31;
@@ -249,6 +266,18 @@ export default {
     .el-table {
       margin-bottom: 20px;
       font-size: 13px;
+      cursor: default;
+      // 音乐标题
+      .table-name-cell {
+        margin-bottom: 8px;
+      }
+      .description {
+        font-size: 12px;
+        color: #bebebe;
+      }
+      .icon-volume {
+        color: #d33a31;
+      }
       &::before {
         width: 0;
       }

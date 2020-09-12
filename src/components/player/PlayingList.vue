@@ -114,6 +114,7 @@ export default {
     flex: 1;
     position: relative;
     margin: 5px 10px;
+    cursor: default;
     ::v-deep.el-tabs__header {
       display: flex;
       justify-content: center;

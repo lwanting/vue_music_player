@@ -57,9 +57,9 @@
       <h3 class="title">推荐MV</h3>
       <div class="list">
         <div class="item" v-for="(item, index) in mvs" :key="index">
-          <div class="cover">
+          <div class="cover" @click="toMv(item.id)">
             <img :src="item.picUrl" alt />
-            <div class="play-box" @click="toMv(item.id)">
+            <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>
             <div class="num-box">
@@ -272,7 +272,6 @@ export default {
         display: flex;
         width: 50%;
         height: 20%;
-        cursor: pointer;
         .order-box {
           display: flex;
           align-items: center;
@@ -286,6 +285,7 @@ export default {
           position: relative;
           width: 70px;
           margin: 10px;
+          cursor: pointer;
           img {
             width: 100%;
           }
@@ -330,6 +330,7 @@ export default {
         margin: 10px;
         .cover {
           position: relative;
+          cursor: pointer;
           img {
             width: 100%;
             height: 100%;
@@ -349,7 +350,6 @@ export default {
             opacity: 0;
             transform: translate(-50%, -50%);
             transition: all 0.5s;
-            cursor: pointer;
             .icon-play {
               color: #d33a31;
               font-size: 25px;
@@ -366,9 +366,9 @@ export default {
               margin-right: 5px;
             }
           }
-        }
-        &:hover .play-box {
-          opacity: 1;
+          &:hover .play-box {
+            opacity: 1;
+          }
         }
         .detail {
           font-size: 13px;

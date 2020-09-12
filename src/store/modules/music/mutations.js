@@ -31,7 +31,7 @@ export default {
   // 设置播放列表数据
   setPlaylist(state, playlist) {
     if (!equal(state.playlist, playlist)) {
-      console.log('update')
+      // console.log('update')
       state.playlist = playlist
       state.isPlayingListTipShow = true
       setTimeout(() => {

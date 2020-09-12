@@ -1,7 +1,7 @@
 <template>
   <div class="mini-player">
     <!-- 歌曲信息区域 -->
-    <div class="song-wrap" v-if="isCurrentMusic">
+    <div class="song-wrap" v-if="hasCurrentMusic">
       <!-- 歌曲封面 -->
       <div class="cover">
         <img :src="currentMusic.picUrl" alt />
@@ -49,7 +49,7 @@
       <span class="iconfont icon-github" @click="toGithub"></span>
     </div>
     <!-- 进度条区域 -->
-    <div class="progress-bar-wrap" v-if="isCurrentMusic">
+    <div class="progress-bar-wrap" v-if="hasCurrentMusic">
       <progress-bar :percent="progressPercent" @percentChange="progressChange" />
     </div>
     <audio src @canplay="ready()" @timeupdate="timeUpdate" @ended="next" ref="audio"></audio>
@@ -58,7 +58,7 @@
 
 <script>
 import ProgressBar from '../../base/ProgressBar'
-import { mapState, mapMutations, mapGetters } from '../../store/helper/music'
+import { mapState, mapMutations, mapGetters, mapActions } from '../../store/helper/music'
 import { getMusicUrl } from '../../api/music'
 import { modelist } from '../../utils/config'
 import Storage from 'good-storage'
@@ -108,17 +108,20 @@ export default {
     // 上一首歌曲
     previous() {
       if (this.isReady) {
-        this.setCurrentMusic(this.prevMusic)
+        this.currnetMusicInfo(this.prevMusic)
       }
     },
     // 下一首歌曲
     next() {
       if (this.isReady) {
-        this.setCurrentMusic(this.nextMusic)
+        this.currnetMusicInfo(this.nextMusic)
       }
     },
     // 切换播放状态
     togglePlayState() {
+      if (!this.hasCurrentMusic) {
+        return
+      }
       this.setPlayState(!this.playState)
     },
     // 切换静音与非静音状态
@@ -166,11 +169,12 @@ export default {
       'setCurrentTime',
       'setPlayingListVisible',
       'setPlayMode'
-    ])
+    ]),
+    ...mapActions(['currnetMusicInfo'])
   },
   computed: {
     // 是否有歌曲播放，控制歌曲信息的显示与隐藏
-    isCurrentMusic() {
+    hasCurrentMusic() {
       return this.currentMusic.id !== undefined && this.currentMusic.id !== null
     },
     // 获取audio
@@ -206,15 +210,16 @@ export default {
   watch: {
     // 监听当前播放歌曲
     currentMusic(newMusic, oldMusic) {
-      console.log('watch')
+      // console.log('watch')
       // 单曲循环模式上一首下一首
       if (oldMusic && oldMusic.id === newMusic.id) {
         this.audio.currentTime = 0
         this.setCurrentTime(0)
         this.play()
+        return false
       }
-      this.setMusicUrl()
       this.isReady = false
+      this.setMusicUrl()
       // 延迟1s确保音频加载完
       setTimeout(() => {
         // 播放
@@ -316,6 +321,7 @@ export default {
     }
     .icon-song-list {
       margin-right: 25px;
+      outline: none;
     }
     .volume-wrap {
       display: flex;
