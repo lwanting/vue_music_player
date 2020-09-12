@@ -48,7 +48,7 @@
       <div class="list">
         <div class="item" v-for="(item, index) in mvs" :key="index" @click="toMv(item.id)">
           <div class="cover">
-            <img :src="item.cover" alt />
+            <img v-lazy="item.cover" alt />
             <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>

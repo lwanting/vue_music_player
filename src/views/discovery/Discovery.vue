@@ -4,7 +4,7 @@
     <div class="banner">
       <el-carousel :interval="4000" type="card" class="banner-carousel">
         <el-carousel-item v-for="(item, index) in banners" :key="index">
-          <img :src="item.imageUrl" alt />
+          <img v-lazy="item.imageUrl" alt />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -22,7 +22,7 @@
             <div class="detail-box">
               <span class="detail">{{item.copywriter}}</span>
             </div>
-            <img :src="item.picUrl" alt />
+            <img v-lazy="item.picUrl" alt />
             <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>
@@ -40,7 +40,7 @@
             <span class="order">{{ index+1 &lt; 10 ? '0'+(index+1) : index+1 }}</span>
           </div>
           <div class="poster" @click="playMusic(item.id)">
-            <img :src="item.picUrl" alt />
+            <img v-lazy="item.picUrl" alt />
             <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>
@@ -58,7 +58,7 @@
       <div class="list">
         <div class="item" v-for="(item, index) in mvs" :key="index">
           <div class="cover" @click="toMv(item.id)">
-            <img :src="item.picUrl" alt />
+            <img v-lazy="item.picUrl" alt />
             <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>

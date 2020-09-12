@@ -4,7 +4,7 @@
     <div class="song-wrap" v-if="hasCurrentMusic">
       <!-- 歌曲封面 -->
       <div class="cover">
-        <img :src="currentMusic.picUrl" alt />
+        <img v-lazy="currentMusic.picUrl" alt />
         <div class="zoom">
           <span class="iconfont"></span>
         </div>

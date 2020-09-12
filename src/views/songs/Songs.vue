@@ -22,7 +22,7 @@
       <el-table-column width="100">
         <template v-slot="scope">
           <div class="poster">
-            <img :src="scope.row.album.picUrl" alt />
+            <img v-lazy="scope.row.album.picUrl" alt />
             <div class="play-box" @click="playMusic(scope.row.id)">
               <span class="iconfont icon-play"></span>
             </div>

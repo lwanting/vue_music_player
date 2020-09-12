@@ -3,14 +3,14 @@
     <!-- 顶部精品歌单卡片 -->
     <div class="top-card">
       <div class="cover">
-        <img :src="highQuality.coverImgUrl" alt />
+        <img v-lazy="highQuality.coverImgUrl" alt />
       </div>
       <div class="detail">
         <div class="tag">精品歌单</div>
         <p class="title">{{highQuality.name}}</p>
         <p class="info">{{highQuality.description}}</p>
       </div>
-      <img :src="highQuality.coverImgUrl" alt class="background" />
+      <img v-lazy="highQuality.coverImgUrl" alt class="background" />
     </div>
     <!-- tab栏歌单分类 -->
     <div class="category-tab">
@@ -31,7 +31,7 @@
           <div class="detail-box">
             <span class="detail">播放量：{{item.playCount | formatCount}}</span>
           </div>
-          <img :src="item.coverImgUrl" alt />
+          <img v-lazy="item.coverImgUrl" alt />
           <div class="play-box">
             <span class="iconfont icon-play"></span>
           </div>

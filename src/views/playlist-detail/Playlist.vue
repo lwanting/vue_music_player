@@ -3,12 +3,12 @@
     <!-- 歌单封面及介绍 -->
     <div class="header-wrap">
       <div class="cover">
-        <img :src="playlist.coverImgUrl" alt />
+        <img v-lazy="playlist.coverImgUrl" alt />
       </div>
       <div class="detail">
         <h4 class="name">{{playlist.name}}</h4>
         <div class="creator-wrap">
-          <img :src="playlist.creator.avatarUrl" alt />
+          <img v-lazy="playlist.creator.avatarUrl" alt />
           <span class="creator">{{playlist.creator.nickname}}</span>
           <span class="create-time">{{playlist.createTime | date}} 创建</span>
         </div>
@@ -31,7 +31,7 @@
           <el-table-column width="100">
             <template v-slot="scope">
               <div class="poster">
-                <img :src="scope.row.al.picUrl" alt />
+                <img v-lazy="scope.row.al.picUrl" alt />
                 <div class="play-box" @click="playMusic(scope.row.id)">
                   <span class="iconfont icon-play"></span>
                 </div>
@@ -58,7 +58,7 @@
           <h3>精彩评论</h3>
           <div class="comment" v-for="(item, index) in hotComments" :key="index">
             <div class="avatar">
-              <img :src="item.user.avatarUrl" alt />
+              <img v-lazy="item.user.avatarUrl" alt />
             </div>
             <div class="detail">
               <div class="content-wrap">
@@ -84,7 +84,7 @@
           <h3>最新评论</h3>
           <div class="comment" v-for="(item, index) in comments" :key="index">
             <div class="avatar">
-              <img :src="item.user.avatarUrl" alt />
+              <img v-lazy="item.user.avatarUrl" alt />
             </div>
             <div class="detail">
               <div class="content-wrap">

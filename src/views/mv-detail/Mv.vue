@@ -7,7 +7,7 @@
       </div>
       <div class="author-info">
         <div class="avatar">
-          <img :src="artist.picUrl" alt />
+          <img v-lazy="artist.picUrl" alt />
         </div>
         <span class="singer">{{artist.name}}</span>
       </div>
@@ -26,7 +26,7 @@
           <h3>精彩评论</h3>
           <div class="comment" v-for="(item, index) in hotComments" :key="index">
             <div class="avatar">
-              <img :src="item.user.avatarUrl" alt />
+              <img v-lazy="item.user.avatarUrl" alt />
             </div>
             <div class="detail">
               <div class="content-wrap">
@@ -47,7 +47,7 @@
           <h3>最新评论</h3>
           <div class="comment" v-for="(item, index) in comments" :key="index">
             <div class="avatar">
-              <img :src="item.user.avatarUrl" alt />
+              <img v-lazy="item.user.avatarUrl" alt />
             </div>
             <div class="detail">
               <div class="content-wrap">
@@ -91,7 +91,7 @@
           @click="toMv(item.id)"
         >
           <div class="cover">
-            <img :src="item.cover" alt />
+            <img v-lazy="item.cover" alt />
             <div class="play-box">
               <span class="iconfont icon-play"></span>
             </div>

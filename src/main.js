@@ -11,8 +11,11 @@ import './utils/element.js'
 import './assets/fonts/iconfont.css'
 // 导入moment
 import moment from 'moment'
+// 导入vue-lazyload
+import VueLazyLoad from 'vue-lazyload'
 
 Vue.config.productionTip = false
+Vue.use(VueLazyLoad)
 
 // 全局过滤器
 // 处理播放量
