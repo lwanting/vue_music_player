@@ -3,14 +3,14 @@
     <!-- 顶部精品歌单卡片 -->
     <div class="top-card">
       <div class="cover">
-        <img v-lazy="highQuality.coverImgUrl" alt />
+        <img :src="highQuality.coverImgUrl" alt />
       </div>
       <div class="detail">
         <div class="tag">精品歌单</div>
         <p class="title">{{highQuality.name}}</p>
         <p class="info">{{highQuality.description}}</p>
       </div>
-      <img v-lazy="highQuality.coverImgUrl" alt class="background" />
+      <img :src="highQuality.coverImgUrl" alt class="background" />
     </div>
     <!-- tab栏歌单分类 -->
     <div class="category-tab">

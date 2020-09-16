@@ -58,7 +58,12 @@
 
 <script>
 import ProgressBar from '../../base/ProgressBar'
-import { mapState, mapMutations, mapGetters, mapActions } from '../../store/helper/music'
+import {
+  mapState,
+  mapMutations,
+  mapGetters,
+  mapActions
+} from '../../store/helper/music'
 import { getMusicUrl } from '../../api/music'
 import { modelist } from '../../utils/config'
 import Storage from 'good-storage'
@@ -242,6 +247,7 @@ export default {
   position: relative;
   padding: 0 25px;
   height: 100%;
+  box-shadow: -5px 0 5px -2px rgb(0, 0, 0, 0.2);
   // 歌曲信息区域
   .song-wrap {
     flex: 4;
@@ -315,7 +321,7 @@ export default {
     .icon-order-play,
     .icon-loop-play,
     .icon-random-play {
-      margin-right: 25px;
+      margin-right: 30px;
       font-size: 21px;
       outline: none;
     }

@@ -5,7 +5,7 @@ let loading
 // loading个数
 let loadingCount = 0
 const request = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://47.102.127.129:3000'
 })
 // 显示loading
 function showLoading() {
