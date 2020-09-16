@@ -7,7 +7,7 @@
       </div>
       <div class="author-info">
         <div class="avatar">
-          <img v-lazy="artist.picUrl" alt />
+          <img v-lazy="artist.picUrl" :key="artist.picUrl" alt />
         </div>
         <span class="singer">{{artist.name}}</span>
       </div>
