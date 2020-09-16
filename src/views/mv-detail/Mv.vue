@@ -3,7 +3,7 @@
     <div class="left">
       <h3 class="title">mv详情</h3>
       <div class="player">
-        <video :src="url" controls></video>
+        <video :src="url" controls preload="auto" ref="video" @play="changePlayState"></video>
       </div>
       <div class="author-info">
         <div class="avatar">
@@ -118,6 +118,7 @@ import {
   getArtistInfo,
   getSimiMv
 } from '../../api/mv'
+import { mapState, mapMutations } from '../../store/helper/music'
 export default {
   data() {
     return {
@@ -169,7 +170,8 @@ export default {
   computed: {
     id() {
       return this.$route.query.id
-    }
+    },
+    ...mapState(['playState'])
   },
   methods: {
     async setMvDate() {
@@ -202,7 +204,6 @@ export default {
       }
       this.comments = res.comments
       this.total = res.total
-      // console.log(res)
     },
     // 页码改变，计算偏移量
     pageChange(page) {
@@ -213,7 +214,14 @@ export default {
     // 跳转到mv详情页
     toMv(id) {
       this.$router.push(`/mv?id=${id}`)
-    }
+    },
+    // 绑定播放事件,mv播放时,停止音乐播放
+    changePlayState() {
+      if (this.playState) {
+        this.setPlayState(false)
+      }
+    },
+    ...mapMutations(['setPlayState'])
   },
   watch: {
     // id改变重新获取数据
@@ -241,12 +249,13 @@ export default {
       width: 100%;
       height: 380px;
       margin-bottom: 20px;
-      background-color: #000;
       video {
         width: 100%;
         height: 100%;
         outline: none;
+        // background-color: #000;
         border-radius: 5px;
+        object-fit: cover;
       }
     }
     .author-info {
