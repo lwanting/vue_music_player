@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   // 基本路径
@@ -40,5 +41,14 @@ module.exports = {
         return args
       })
     })
+  },
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === 'production') {
+      config.plugins.push(new CompressionPlugin({
+        test: /\.(js|css|html|ico)$/i, // 要压缩的文件
+        filename: '[path].gz[query]', // 压缩后的文件名
+        algorithm: "gzip", // 使用gzip压缩
+      }))
+    }
   }
 }
